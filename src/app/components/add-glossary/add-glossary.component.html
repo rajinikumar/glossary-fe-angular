@@ -1,0 +1,43 @@
+<div>
+    <div class="submit-form">
+      <div *ngIf="!submitted">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="fname"
+            required
+            [(ngModel)]="user.fname"
+            name="fname"
+          />
+        </div>
+        <div class="form-group">
+          <label for="user_name">User Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="user_name"
+            required
+            [(ngModel)]="user.user_name"
+            name="user_name"
+          />
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            class="form-control"
+            id="email"
+            required
+            [(ngModel)]="user.email"
+            name="email"
+          />
+        </div>
+        <button (click)="saveUser()" class="btn btn-success mt-2">Submit</button>
+      </div>
+      <div *ngIf="submitted">
+        <h4>User was submitted successfully!</h4>
+        <button class="btn btn-success" (click)="newUser()">Add Another User?</button>
+      </div>
+    </div>
+  </div>

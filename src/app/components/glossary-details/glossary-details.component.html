@@ -1,0 +1,99 @@
+<div *ngIf="viewMode; else editable">
+    <div *ngIf="currentUser.id">
+      <h4>User</h4>
+      <div>
+        <label><strong>Name:</strong></label> {{ currentUser.fname }}
+      </div>
+      <div>
+        <label><strong>User Name:</strong></label> {{ currentUser.glossary_name }}
+      </div>
+      <div>
+        <label><strong>Email:</strong></label>
+        {{ currentUser.email }}
+      </div>
+      <div>
+        <label><strong>Status:</strong></label>
+        {{ currentUser.status ? "Active" : "InActive" }}
+      </div>
+      <a
+        class="btn btn-success"
+        routerLink="/glossary/{{ currentUser.id }}"
+      >
+        Edit
+      </a>
+    </div>
+    <div *ngIf="!currentUser">
+      <br />
+      <p>Please click on a User...</p>
+    </div>
+  </div>
+  <ng-template #editable>
+    <div *ngIf="currentUser.id" class="edit-form">
+      <h4>User</h4>
+      <form>
+        <div class="form-group">
+          <label for="title">Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="title"
+            [(ngModel)]="currentUser.fname"
+            name="title"
+          />
+        </div>
+        <div class="form-group">
+            <label for="title">User Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="title"
+              [(ngModel)]="currentUser.glossary_name"
+              name="title"
+            />
+          </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            type="text"
+            class="form-control"
+            id="email"
+            [(ngModel)]="currentUser.email"
+            name="email"
+          />
+        </div>
+        <div class="form-group">
+          <label><strong>Status:</strong></label>
+          {{ currentUser.status ? "Active" : "InActive" }}
+        </div>
+      </form>
+      <button
+        class="btn btn-primary m-1 btn-sm"
+        *ngIf="currentUser.status"
+        (click)="updateActive(false)"
+      >
+        Deactive
+      </button>
+      <button
+        *ngIf="!currentUser.status"
+        class="btn btn-primary m-1 btn-sm"
+        (click)="updateActive(true)"
+      >
+        Active
+      </button>
+      <button class="btn btn-danger  m-1 btn-sm" (click)="deleteUser()">
+        Delete
+      </button>
+      <button
+        type="submit"
+        class="btn btn-success  m-1 btn-sm"
+        (click)="updateUser()"
+      >
+        Update
+      </button>
+      <p>{{ message }}</p>
+    </div>
+    <div *ngIf="!currentUser.id">
+      <br />
+      <p>Cannot access this User...</p>
+    </div>
+  </ng-template>

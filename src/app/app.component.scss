@@ -1,0 +1,22 @@
+$white: #FFFFFF;
+.navbar-theme {
+    background-color: #dc3545;
+}
+.navbar-brand {
+    padding-left: 10px;
+    padding-right: 20px;
+}
+.navbar-brand, .navbar-dark {
+    color: $white;
+    font-weight: bold;
+}
+.navbar-nav .nav-link {
+    color: $white;
+    font-weight: normal;
+}
+.nav-item {
+    .nav-link.is-active {
+        border: 1px solid $white;
+        border-radius: 10px;
+    }
+}
